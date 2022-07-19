@@ -1,73 +1,35 @@
-import { useEffect, useState } from "react";
-import { api } from "../../service/api";
+import { useContext, useEffect, useState } from "react";
+
 import { Container } from "./style";
 import {Link} from 'react-router-dom'
 import { Swiper, SwiperSlide } from "swiper/react";
+import { CartContext } from "../../Context/Cart";
+import imagem from '../../images/pokebola.png'
 
 
-interface pokemonProps{
-    id:number
-    name:string
-    abilities:any
-    types:any
-    sprites:any
-    weight:number
-    base_experience:number
-}
 
 export function Header(){
-    const [pokemon, setPokemon] = useState<pokemonProps>()
+    
+    const {pokemon, handleSearch}:any = useContext(CartContext)
+
     const [input, setInput] = useState('')
     const [x, setX] = useState<any>()
-
-    const flag = true ? pokemon == undefined : false ;
-
-    
-        
-    
-    
-    
-    
-    
-    
-    async function handleSearch() {
-        if(input != ''){
-            try{
-                const x = await api.get(`pokemon`)
-                const response = await api.get(`pokemon/${input}`)
-                setPokemon(response.data)
-                setX(x.data)
-            }catch{
-                alert("Erro...")
-            }
-        }else{
-            alert('digite o nome do pokemon...')
-        }
-    }
-
-    console.log(x.results)
-    
 
 
     return(
         <Container>
             <h1>Pokédex</h1>
+            <img className="imagem-pokedex" src={imagem} alt="imagem de pokebola" />
             <input
              type="text"
              placeholder="Digite o nome do pokemon aqui..."
              value={input}
              onChange={(e)=>setInput(e.target.value)}
               />
-            <button onClick={handleSearch}>Buscar</button>
-
-            {flag && (
-                <div>
-                    {x.map((props:any, key:number)=>(
-                    <span>{props.results[key].name}</span>
-                ))}
-                </div>
-            )}
-
+              
+            <button onClick={()=>handleSearch(input)}>Buscar</button>
+            
+            
             {pokemon && (
                 <div className="card-pokemon">
                     <Link className="link-cart" to={`/viewCart/${pokemon.id}`}>

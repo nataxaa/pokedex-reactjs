@@ -5,12 +5,21 @@ export const Container = styled.div`
     align-items:center ;
     text-align:center ;
 
+    img.imagem-pokedex{
+        width:2.5rem ;
+        position:relative ;
+        top:-6.8rem ;
+        left:-17rem ;
+       
+    }
+
     button{
         padding:10px ;
         border:0 ;
         outline:none ;
         border-radius:10px ;
         margin-left:10px ;
+        cursor: pointer;
     }
     .link-cart{
         text-decoration:none ;
@@ -24,9 +33,11 @@ export const Container = styled.div`
     }
 
     h1{
-        padding-top:1rem ;
+        padding-top:1.2rem ;
         padding-bottom:3rem ;
         font-size:3rem ;
+        text-align:left ;
+        padding-left:5rem ;
     }
 
     div.card-pokemon{
@@ -35,7 +46,7 @@ export const Container = styled.div`
         background-position:center  ;
         background-repeat:no-repeat ;
         width:15rem ;
-        height:20rem ;
+        height:fit-content ;
         margin: 2rem auto ;
         padding:10px ;
         border-radius:10px ;
